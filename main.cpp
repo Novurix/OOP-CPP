@@ -1,23 +1,48 @@
 #include <iostream>
-using namespace std;
 
-// Class
-class Client {
+// GROUPING
+class UserInformation {
+private:
+    std::string user;
+    std::string handle;
 
-    public:
-        int id;
-        string name;
+public:
 
-        // Constructor
-        Client(string _name, int _id) {
-            name = _name;
-            id = _id;
+    void getUser(std::string user) {
+        this->user = user;
 
-            cout << _name << " " << id << endl;
-        }
+        std::cout << this->user << std::endl; 
+    }
+    void getHandle(std::string handle) {
+        this->handle = handle;
+        std::cout << this->handle << std::endl;
+    }
 };
 
+bool hasHandle;
+UserInformation usr;
+
+void getInput() {
+
+    if (!hasHandle) { std::cout << "enter your handle: "; }
+
+    else { std::cout << "enter your username: "; }
+
+    std::string input;
+    std::cin >> input;
+
+    if (!hasHandle) {
+
+        usr.getHandle(input);
+        hasHandle = true;
+
+        getInput();
+    }
+    else { 
+        usr.getUser(input);
+    }
+}
 
 int main() {
-    Client mainOOP("Test",20);
+    getInput();
 }
